@@ -1,0 +1,22 @@
+
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: rootroot
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: inventory_backend_development
+
+test:
+  <<: *default
+  database: inventory_backend_test
+
+production:
+  <<: *default
+  database: inventory_backend_production
+  username: inventory_backend
+  password: <%= ENV['INVENTORY_BACKEND_DATABASE_PASSWORD'] %>
